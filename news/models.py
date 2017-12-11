@@ -14,6 +14,10 @@ class Column(models.Model):
     intro = models.CharField('栏目简介', default='',
                              max_length=1024)
 
+    nav_display = models.BooleanField('导航显示', default=False)
+    home_display = models.BooleanField('首页显示', default=False)
+
+
     def __str__(self):
         return self.name
 
@@ -53,4 +57,4 @@ class Article(models.Model):
         verbose_name_plural = '教程'
 
     def get_absolute_url(self):
-        return reverse('article', args=(self.slug,))
+        return reverse('article', args=(self.pk, self.slug,))
